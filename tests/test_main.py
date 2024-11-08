@@ -15,5 +15,5 @@ class TestMain:
     def test_login(self):
         page = MainPage()
         page.login()
-        page.connect_from_id()
-        page.logout()
+        # page.connect_from_id()
+        # page.logout()

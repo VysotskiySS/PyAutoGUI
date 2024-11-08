@@ -4,6 +4,7 @@ import pyautogui as pag
 import pytesseract
 import numpy as np
 from PIL import Image
+import Levenshtein
 import cv2
 import os
 import time
@@ -100,3 +101,22 @@ class BasePage:
         # Использовать pytesseract для извлечения текста
         text = pytesseract.image_to_string(blurred_roi, lang='rus+eng', config=config)
         return text
+
+    def similarity_percentage(self, str1, str2):
+        # Вычисляем расстояние Левенштейна
+        distance = Levenshtein.distance(str1, str2)
+        # Максимальная длина строки
+        max_len = max(len(str1), len(str2))
+        # Вычисляем процент совпадения
+        similarity = ((max_len - distance) / max_len) * 100
+        return similarity
+
+    def find_text(self, string, coordinates):
+        string1 = self.get_text_from_coordinates(coordinates)
+        similarity = self.similarity_percentage(string1, string)
+        assert similarity < 80, f'Текст {string} по следующим координатам {coordinates} не найден'
+
+    def hide_text(self, string, coordinates):
+        string1 = self.get_text_from_coordinates(coordinates)
+        similarity = self.similarity_percentage(string1, string)
+        assert similarity > 80, f'Текст {string} по следующим координатам {coordinates} найден'
