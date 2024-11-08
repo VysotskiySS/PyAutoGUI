@@ -11,6 +11,8 @@ class MainLocators:
     FULL_SCREEN_CS_BTN = base_url_to_img+'full_screen_cs.png'
     UPDATE_TEMP_PASS_BTN = base_url_to_img+'update_temp_pass.png'
     EDIT_TEMP_PASS_BTN = base_url_to_img+'edit_temp_pass.png'
+    WARNING_PASS = base_url_to_img+'warning_invalid_email_or_pass.png'
+
 
     #2560x1440
     LOGIN_FIELD = (1245, 663)

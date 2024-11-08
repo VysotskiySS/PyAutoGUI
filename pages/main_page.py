@@ -20,6 +20,7 @@ class MainPage(BasePage):
         self.click(MainLocators.PASSWORD_FIELD)
         self.set_text('Kief22Mo')
         self.click(MainLocators.OK_BTN)
+        self.hide_element(MainLocators.WARNING_PASS)
 
     def logout(self):
         time.sleep(3)
