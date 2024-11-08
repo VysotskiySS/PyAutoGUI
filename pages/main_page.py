@@ -33,4 +33,8 @@ class MainPage(BasePage):
         pag.keyDown('delete')
         self.set_text('000111333')
         self.click(MainLocators.CONNECT_BTN)
-        self.click(MainLocators.X_BTN)
+        # self.click(MainLocators.X_BTN)
+
+    def full_screen_cs(self):
+        time.sleep(3)
+        self.click(MainLocators.FULL_SCREEN_CS_BTN)
