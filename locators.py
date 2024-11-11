@@ -19,3 +19,11 @@ class MainLocators:
     PASSWORD_FIELD = (1235, 723)
     LOGIN_BTN = (229, 647)
     ID_FIELD = (401, 184)
+
+class CSLocators:
+    base_url_to_img = '/home/vysotsky/PycharmProjects/PyAutoGUI/img/cs_window/'
+
+    CS_PANEL = base_url_to_img+'cs_panel.png'
+
+    # 2560x1440
+    X_BTN_FULL_SCREEN_CS = (2540, 17)

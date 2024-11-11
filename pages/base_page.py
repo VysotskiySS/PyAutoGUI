@@ -5,6 +5,7 @@ import pytesseract
 import numpy as np
 from PIL import Image
 import Levenshtein
+import subprocess
 import cv2
 import os
 import time
@@ -19,6 +20,13 @@ class BasePage:
 
     def get_os_name(self):
         return os.name
+
+    def clear_text(self):
+        pag.hotkey('ctrl', 'a')
+        pag.keyDown('delete')
+
+    def full_screen(self):
+        pag.hotkey('alt', 'f10')
 
     def click_img(self, locator):
         # Ищем изображение на экране
@@ -114,9 +122,17 @@ class BasePage:
     def find_text(self, string, coordinates):
         string1 = self.get_text_from_coordinates(coordinates)
         similarity = self.similarity_percentage(string1, string)
-        assert similarity < 80, f'Текст {string} по следующим координатам {coordinates} не найден'
+        assert similarity > 80, f'Текст {string} по следующим координатам {coordinates} не найден'
 
     def hide_text(self, string, coordinates):
         string1 = self.get_text_from_coordinates(coordinates)
         similarity = self.similarity_percentage(string1, string)
-        assert similarity > 80, f'Текст {string} по следующим координатам {coordinates} найден'
+        assert similarity < 80, f'Текст {string} по следующим координатам {coordinates} найден'
+
+    # Закрытие программы по её имени
+    def kill_process(name):
+        try:
+            subprocess.run(["pkill", "-f", name], check=True)
+            print(f"Процесс {name} был успешно завершён.")
+        except subprocess.CalledProcessError:
+            print(f"Не удалось завершить процесс {name}.")
