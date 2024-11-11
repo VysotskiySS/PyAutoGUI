@@ -2,6 +2,8 @@
 import time
 from os import times
 import pyautogui as pag
+
+from config import *
 from locators import *
 from pages.base_page import BasePage
 
@@ -11,14 +13,14 @@ class MainPage(BasePage):
         super().__init__()
 
 
-    def login(self):
+    def login(self, login=valid_login, password=valid_password):
         time.sleep(3)
         self.click(MainLocators.SETTINGS_BTN)
         self.click(MainLocators.LOGIN_BTN)
         self.click(MainLocators.LOGIN_FIELD)
-        self.set_text('rude')
+        self.set_text(login)
         self.click(MainLocators.PASSWORD_FIELD)
-        self.set_text('Kief22Mo')
+        self.set_text(password)
         self.click(MainLocators.OK_BTN)
         time.sleep(3)
         self.hide_text('Неверный E-Mail или пароль',(1148, 791, 1328, 839))
@@ -34,11 +36,10 @@ class MainPage(BasePage):
         time.sleep(3)
         self.click(MainLocators.ID_FIELD)
         self.clear_text()
-        self.set_text('000111333')
+        self.set_text(valid_remote_device_id)
         self.click(MainLocators.CONNECT_BTN)
         time.sleep(3)
         self.find_element(CSLocators.CS_PANEL)
-
 
     def full_screen_cs(self):
         time.sleep(3)

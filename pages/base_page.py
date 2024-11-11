@@ -8,6 +8,7 @@ import Levenshtein
 import subprocess
 import cv2
 import os
+import requests
 import time
 from locators import *
 
