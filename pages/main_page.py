@@ -32,15 +32,25 @@ class MainPage(BasePage):
         self.click(MainLocators.SETTINGS_BTN)
         self.find_text('Войти', (180, 635, 370, 655))
 
-    def connect_from_id(self):
+    def connect_from_id(self, auth='no'):
         time.sleep(3)
         self.click(MainLocators.ID_FIELD)
         self.clear_text()
         self.set_text(valid_remote_device_id)
         self.click(MainLocators.CONNECT_BTN)
+        if auth == 'yes':
+            self.set_pass()
         time.sleep(3)
         self.find_element(CSLocators.CS_PANEL)
+
+    def set_pass(self):
+        # self.find_element(MainLocators.PASSWORD_WINDOW)
+        self.set_text(valid_password)
+        self.click(MainLocators.OK_BTN)
 
     def full_screen_cs(self):
         time.sleep(3)
         self.click(MainLocators.FULL_SCREEN_CS_BTN)
+
+    # def test_new_base_func(self):
+    #     self.click(self.get_element(MainLocators.SETTINGS_BTN))

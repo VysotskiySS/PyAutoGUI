@@ -12,6 +12,7 @@ class MainLocators:
     UPDATE_TEMP_PASS_BTN = base_url_to_img+'update_temp_pass.png'
     EDIT_TEMP_PASS_BTN = base_url_to_img+'edit_temp_pass.png'
     WARNING_PASS = base_url_to_img+'warning_invalid_email_or_pass.png'
+    PASSWORD_WINDOW = base_url_to_img+'need_pass_window.png'
 
 
     #2560x1440

@@ -44,24 +44,32 @@ class BasePage:
 
     def set_text(self, text):
         pag.write(text, interval=0.25)  # Вводит текст с интервалом между символами
+        self.get_screen()
 
     def click(self, locator, element_name=None):
         if element_name is not None:
             with allure.step(f"Клик по элементу '{element_name}'"):
                 if isinstance(locator, str):
                     self.click_img(locator)
+                    self.get_screen()
                 else:
                     self.click_coordinate(*locator)
+                    self.get_screen()
         else:
             if isinstance(locator, str):
                 self.click_img(locator)
+                self.get_screen()
             else:
                 self.click_coordinate(*locator)
+                self.get_screen()
 
     def get_screen(self):
         # Снимаем текущий экран и сохраняем его как файл
         screenshot = pag.screenshot()
-        screenshot.save("screenshot.png")
+        screen = "screen.png"
+        screenshot.save(screen)
+        # Передаем скриншот в Allure
+        allure.attach.file(f'./{screen}', attachment_type=allure.attachment_type.PNG)
 
     def get_text_from_img(self):
         # Загрузка изображения
@@ -78,10 +86,18 @@ class BasePage:
         # Ищем изображение на экране
         location = pag.locateOnScreen(locator)
         if location:
-            # Кликаем по его центру
+            # Если найден, то ничего не делаем
             pass
         else:
             raise ValueError(f"Элемент{locator} не найден")
+
+    # def get_element(self, locator):
+    #     # Ищем изображение на экране
+    #     location = pag.locateOnScreen(locator)
+    #     if location:
+    #         return location
+    #     else:
+    #         raise ValueError(f"Элемент{locator} не найден")
 
     def hide_element(self, locator):
         # Ищем изображение на экране

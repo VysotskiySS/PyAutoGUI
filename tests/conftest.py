@@ -4,6 +4,8 @@ import pytest
 import time
 import subprocess
 
+from pages.base_page import BasePage
+
 # Хранит процесс приложения
 app_process = None
 
@@ -11,18 +13,22 @@ app_process = None
 def setup():
     global app_process
     run_app()
-    full_screen()
     yield
-    close_app()
+    teardown()
 
 def run_app():
     global app_process
     program_name = 'rudesktop'  # Убедитесь, что это верное имя исполняемого файла
     app_process = subprocess.Popen(program_name)  # Запускаем приложение
+    full_screen()
 
 def full_screen():
     time.sleep(2)
     subprocess.Popen(['xdotool', 'key', 'alt+F10'])
+
+def teardown():
+    BasePage().get_screen()
+    close_app()
 
 def close_app():
     global app_process
@@ -38,3 +44,11 @@ def kill_process(name):
         print(f"Процесс {name} был успешно завершён.")
     except subprocess.CalledProcessError:
         print(f"Не удалось завершить процесс {name}.")
+
+# def get_screen(self):
+#     # Снимаем текущий экран и сохраняем его как файл
+#     screenshot = pag.screenshot()
+#     screen = "screen.png"
+#     screenshot.save(screen)
+#     # Передаем скриншот в Allure
+#     allure.attach.file(f'./{screen}', attachment_type=allure.attachment_type.PNG)
