@@ -26,22 +26,26 @@ class MainPage(BasePage):
         self.hide_text('Неверный E-Mail или пароль',(1148, 791, 1328, 839))
 
     def logout(self):
-        time.sleep(3)
+        time.sleep(2)
         self.click(MainLocators.SETTINGS_BTN)
-        self.click(MainLocators.LOGIN_BTN)
+        self.click(MainLocators.LOGOUT_BTN)
+        time.sleep(2)
         self.click(MainLocators.SETTINGS_BTN)
-        self.find_text('Войти', (180, 635, 370, 655))
+        time.sleep(2)
+        self.find_text('Войти.', (178, 636, 260, 653))
 
     def connect_from_id(self, auth='no'):
-        time.sleep(3)
+        time.sleep(2)
         self.click(MainLocators.ID_FIELD)
         self.clear_text()
         self.set_text(valid_remote_device_id)
         self.click(MainLocators.CONNECT_BTN)
         if auth == 'yes':
+            time.sleep(2)
             self.set_pass()
-        time.sleep(3)
+        time.sleep(2)
         self.find_element(CSLocators.CS_PANEL)
+        self.hide_element(CSLocators.WAIT_IMAGE_POPUP)
 
     def set_pass(self):
         # self.find_element(MainLocators.PASSWORD_WINDOW)

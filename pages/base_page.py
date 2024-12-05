@@ -139,7 +139,7 @@ class BasePage:
     def find_text(self, string, coordinates):
         string1 = self.get_text_from_coordinates(coordinates)
         similarity = self.similarity_percentage(string1, string)
-        assert similarity > 80, f'Текст {string} по следующим координатам {coordinates} не найден'
+        assert similarity > 80, f'Текст {string} по следующим координатам {coordinates} не найден, найден текст {string1}, фразы совпадают на {similarity}%'
 
     def hide_text(self, string, coordinates):
         string1 = self.get_text_from_coordinates(coordinates)

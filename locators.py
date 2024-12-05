@@ -1,7 +1,7 @@
 # file: locators.py
 
 class MainLocators:
-    base_url_to_img = '/home/vysotsky/PycharmProjects/PyAutoGUI/img/'
+    base_url_to_img = '../img/'
 
     SETTINGS_BTN = base_url_to_img+'settings_btn.png'
     CONNECT_BTN = base_url_to_img+'connect_btn.png'
@@ -18,13 +18,15 @@ class MainLocators:
     #2560x1440
     LOGIN_FIELD = (1245, 663)
     PASSWORD_FIELD = (1235, 723)
-    LOGIN_BTN = (229, 647)
+    LOGIN_BTN = (220, 646)
+    LOGOUT_BTN = (220, 672)
     ID_FIELD = (401, 184)
 
 class CSLocators:
     base_url_to_img = '/home/vysotsky/PycharmProjects/PyAutoGUI/img/cs_window/'
 
     CS_PANEL = base_url_to_img+'cs_panel.png'
+    WAIT_IMAGE_POPUP = base_url_to_img + 'wait_image_popup.png'
 
     # 2560x1440
     X_BTN_FULL_SCREEN_CS = (2540, 17)
